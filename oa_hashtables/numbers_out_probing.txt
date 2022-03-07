@@ -1,0 +1,45 @@
+*** Linear Probing Random Order Start *** 
+
+print table.size() = 11
+index = 1 key = 89 value = 178
+index = 2 key = 13 value = 26
+index = 3 key = 58 value = 116
+index = 4 key = 48 value = 96
+index = 5 key = 69 value = 138
+index = 6 key = 60 value = 120
+index = 7 key = 18 value = 36
+index = 8 key = 24 value = 48
+index = 9 key = 9 value = 18
+
+*** Linear Probing Random Order End *** 
+
+*** Quadratic Probing Random Order Start *** 
+
+print table.size() = 11
+index = 1 key = 89 value = 178
+index = 2 key = 13 value = 26
+index = 3 key = 58 value = 116
+index = 4 key = 48 value = 96
+index = 5 key = 60 value = 120
+index = 6 key = 24 value = 48
+index = 7 key = 18 value = 36
+index = 8 key = 69 value = 138
+index = 9 key = 9 value = 18
+
+*** Quadratic Probing Random Order End *** 
+
+*** Double Hashing Probing Random Order Start *** 
+
+print table.size() = 11
+index = 1 key = 89 value = 178
+index = 2 key = 13 value = 26
+index = 3 key = 58 value = 116
+index = 4 key = 48 value = 96
+index = 5 key = 69 value = 138
+index = 6 key = 24 value = 48
+index = 7 key = 18 value = 36
+index = 8 key = 60 value = 120
+index = 9 key = 9 value = 18
+
+*** Double Hashing Probing Random Order End *** 
+

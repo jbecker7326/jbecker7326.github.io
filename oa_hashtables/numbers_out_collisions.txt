@@ -1,0 +1,51 @@
+Format of output 
+key: value -> retrievedValue, collisions number Collisions 
+
+Linear total number Collisions 
+Quadratic total number Collisions 
+Double hashing total number Collisions
+
+*** Random Order Start ***
+
+89 : 178 -> 178, collisions 0 
+89 : 178 -> 178, collisions 0 
+89 : 178 -> 178, collisions 0 
+
+18 : 36 -> 36, collisions 0 
+18 : 36 -> 36, collisions 0 
+18 : 36 -> 36, collisions 0 
+
+48 : 96 -> 96, collisions 0 
+48 : 96 -> 96, collisions 0 
+48 : 96 -> 96, collisions 0 
+
+58 : 116 -> 116, collisions 0 
+58 : 116 -> 116, collisions 0 
+58 : 116 -> 116, collisions 0 
+
+69 : 138 -> 138, collisions 4 
+69 : 138 -> 138, collisions 8 
+69 : 138 -> 138, collisions 4 
+
+60 : 120 -> 120, collisions 2 
+60 : 120 -> 120, collisions 0 
+60 : 120 -> 120, collisions 2 
+
+13 : 26 -> 26, collisions 0 
+13 : 26 -> 26, collisions 0 
+13 : 26 -> 26, collisions 0 
+
+24 : 48 -> 48, collisions 12 
+24 : 48 -> 48, collisions 4 
+24 : 48 -> 48, collisions 2 
+
+9 : 18 -> 18, collisions 0 
+9 : 18 -> 18, collisions 0 
+9 : 18 -> 18, collisions 0 
+
+Linear: 18 
+Quadratic: 12 
+Double Hash: 8 
+
+*** Random Order End ***
+
