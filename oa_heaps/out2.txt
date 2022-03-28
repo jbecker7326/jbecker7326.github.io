@@ -1,0 +1,67 @@
+Heap
+[12] 13 19 14 21 26 32 16 24 68 65 31 33 
+
+Insert 31
+Heap after insert 31
+[13] 13 19 14 21 26 31 16 24 68 65 31 33 32 
+
+Insert 14
+Heap after insert 14
+[14] 13 19 14 21 26 31 14 24 68 65 31 33 32 16 
+
+Delete 13
+Heap after Delete 13
+[13] 14 19 14 21 26 31 16 24 68 65 31 33 32 
+
+Delete 14
+Heap after Delete 14
+[12] 14 19 16 21 26 31 32 24 68 65 31 33 
+
+Delete 14
+Heap after Delete 14
+[11] 16 19 31 21 26 33 32 24 68 65 31 
+
+Delete 16
+Heap after Delete 16
+[10] 19 21 31 24 26 33 32 31 68 65 
+
+Delete 19
+Heap after Delete 19
+[9] 21 24 31 31 26 33 32 65 68 
+
+Delete 21
+Heap after Delete 21
+[8] 24 26 31 31 68 33 32 65 
+
+Delete 24
+Heap after Delete 24
+[7] 26 31 31 65 68 33 32 
+
+Delete 26
+Heap after Delete 26
+[6] 31 31 32 65 68 33 
+
+Delete 31
+Heap after Delete 31
+[5] 31 33 32 65 68 
+
+Delete 31
+Heap after Delete 31
+[4] 32 33 68 65 
+
+Delete 32
+Heap after Delete 32
+[3] 33 65 68 
+
+Delete 33
+Heap after Delete 33
+[2] 65 68 
+
+Delete 65
+Heap after Delete 65
+[1] 68 
+
+Delete 68
+Heap after Delete 68
+[0] 
+
