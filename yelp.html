@@ -1,0 +1,125 @@
+	<!DOCTYPE html>
+	<html lang="zxx" class="no-js">
+	<head>
+		<!-- Mobile Specific Meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Favicon-->
+		<link rel="shortcut icon" href="img/icon.svg">
+		<!-- Author Meta -->
+		<meta name="author" content="Jennifer Becker">
+		<!-- Meta Description -->
+		<meta name="description" content="A portfolio website built by Jennifer Becker.">
+		<!-- Meta Keyword -->
+		<meta name="keywords" content="portfolio">
+		<!-- meta character set -->
+		<meta charset="UTF-8">
+		<!-- Site Title -->
+		<title>J. Becker</title>
+
+	    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+			<!--
+			CSS
+			============================================= -->
+			<link rel="stylesheet" href="css/linearicons.css">
+			<link rel="stylesheet" href="css/font-awesome.min.css">
+			<link rel="stylesheet" href="css/bootstrap.css">
+			<link rel="stylesheet" href="css/magnific-popup.css">
+			<link rel="stylesheet" href="css/jquery-ui.css">
+			<link rel="stylesheet" href="css/nice-select.css">
+			<link rel="stylesheet" href="css/animate.min.css">
+			<link rel="stylesheet" href="css/owl.carousel.css">
+			<link rel="stylesheet" href="css/main.css">
+		</head>
+
+		<body>
+			<header id="header">
+				<div class="container main-menu">
+					<div class="row align-items-center justify-content-between d-flex">
+						<div class id="logo">
+							<a href="/"><h3>J. Becker</h3></a>
+						</div>
+						<nav id="nav-menu-container">
+							<ul class="nav-menu">
+								<li><a href="index.html#about">About</a></li>
+
+								<li><a href="index.html#portfolio">Portfolio</a></li>
+						<li><a href="index.html#contact">Contact</a></li>								<li><a href="JBecker_CV.pdf" class="genric-btn primary-border circle" target="_blank">Resume</a></li>
+							</ul>
+
+						</nav><!-- #nav-menu-container -->
+					</div>
+				</div>
+			</header><!-- #header -->
+			<section class="description-area section-gap" id="about">
+
+				<div class="container">
+					<div class="row fullscreen align-items-left justify-content-between">
+
+						<div class="col-lg-10 banner-left">
+							<h2 class="mt-10 mb-20" style="margin-bottom:1cm; margin-top:1cm">Detection and Visualization of Fraudulent Reviews on Yelp</h2>
+						</div>
+
+						&nbsp
+
+						<div class="col-lg-6 col-md-6 col-xs-6 banner-left">
+
+							<p>
+								I worked on the Yelp fake review project during the summer 2023 semester for Georgia Tech's CSE6242 (Data & Visual Analytics) class. The repository is available on <a href="https://github.com/csaw51/yelp-fake-review-project/tree/main">github</a> and the full <a href="https://github.com/csaw51/yelp-fake-review-project/blob/main/Detection_and_Visualization_of_Fraudulent_Reviews_on_Yelp.pdf">report</a> is published to the root of the repository.
+							</p>
+							<p>
+								For this group project we trained 5 classifiers on the YelpZip dataset, a binary classification problem that determined whether a review was real or fake. We compared the results between Support Vector Machine (SVM), Naive Bayes (NB), K-Nearest Neighbor (KNN), Logistic Regression (LR) and Random Forest (RF).
+								We found RF with TF-IDF and SMOTE oversampling to be our best performing model, with an F1-score of 0.8. We then ran our model to generate labels for the Kaggle V4 Yelp dataset and developed an interactive visualization application with D3.js as an analytical tool. 
+							</p>
+							<p>
+								The raw dataset was pre-processed and engineered using:
+								<ul style="list-style: circle;     list-style-position: inside;">
+									<li>Synthetic minority over-sampling (SMOTE) for balancing the dataset</li>
+									<li>TF-IDF for sentiment analysis</li>
+									<li>Feature selection to remove highly correlated behavior and textual features</li>
+								</ul>
+							</p>
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-xs-6 banner-left align-self-center" style="margin-bottom:1cm;">
+
+							<img src="img/yelp-flowchart.png" style="width:auto;height:auto;max-width:100%;">
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-xs-6 banner-left">
+
+							<p>
+								We compared the results of all combination of features, resampling techniques, and supervised learning algorithms. Final metrics are shown in the table. The main evaluation used to quantify the performance of classification models were accuracy, precision, recall, and F1-score. From our data, it was evident that RF outperformed SVM, NB, KNN and LR using the combination of all features after removing multicollinearities with TF-IDF and using SMOTE as a resampling technique. It showed an overall accuracy of 77%, 63% recall for the minority class, and 79% recall for the majority class in fake review detection.
+							</p>
+							<p>
+								Behavioral features outperformed textual features where the accuracy had increased by 18.87%. The addition of the TF-IDF features to the textual features improved accuracy from 53% to 70% using linear SVM and SMOTE, and the inclusion of behavioral features improved recall for the minority class from 45% to 64% in our baseline SVM model.
+							</p>
+							<p>
+								To prepare the data for the visualization, we performed exploratory data analysis (EDA) using pandas, matplotlib, and an in-memory SAS visualization tool. This informed our pre-visualization manipulation strategy and revealed several data cleanup and transformation tasks, such as misaligned zip codes and spelling errors in address fields.
+							</p>
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-xs-6 banner-left align-self-center">
+
+							<img src="img/yelp-metrics.png" style="width:auto;height:auto;max-width:100%;">
+						</div>
+
+						<div>
+					    <!-- create dropdowns -->
+					    <select id="metroDropdown"></select>
+					    <select id="categoryDropdown"></select>
+					    <select id="metricDropdown"></select>
+
+					    <!-- create divs -->
+					    <div id="chloropleth"></div>
+					    <div id="barchart"></div>
+
+					    <!-- load javascript to populate dropdowns and divs -->
+					    <script type="module" src="yelp.js"></script>
+					</div>
+
+					</div>
+				</div>
+			</section>
