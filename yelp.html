@@ -44,28 +44,24 @@
 						<nav id="nav-menu-container">
 							<ul class="nav-menu">
 								<li><a href="index.html#about">About</a></li>
-
 								<li><a href="index.html#portfolio">Portfolio</a></li>
-						<li><a href="index.html#contact">Contact</a></li>								<li><a href="JBecker_CV.pdf" class="genric-btn primary-border circle" target="_blank">Resume</a></li>
+								<li><a href="#contact">Contact</a></li>								
+								<li><a href="JBecker_CV.pdf" class="genric-btn primary-border circle" target="_blank">Resume</a></li>
 							</ul>
-
-						</nav><!-- #nav-menu-container -->
+						</nav>
 					</div>
 				</div>
-			</header><!-- #header -->
-			<section class="description-area section-gap" id="about">
+			</header>
 
+			<section class="description-area section-gap" id="about">
 				<div class="container">
 					<div class="row fullscreen align-items-left justify-content-between">
 
 						<div class="col-lg-10 banner-left">
-							<h2 class="mt-10 mb-20" style="margin-bottom:1cm; margin-top:1cm">Detection and Visualization of Fraudulent Reviews on Yelp</h2>
+							<h2 class="mt-10 mb-20" style="margin-bottom:30px; margin-top:30px">Detection and Visualization of Fraudulent Reviews on Yelp</h2>
 						</div>
 
-						&nbsp
-
 						<div class="col-lg-6 col-md-6 col-xs-6 banner-left">
-
 							<p>
 								I worked on the Yelp fake review project during the summer 2023 semester for Georgia Tech's CSE6242 (Data & Visual Analytics) class. The repository is available on <a href="https://github.com/csaw51/yelp-fake-review-project/tree/main">github</a> and the full <a href="https://github.com/csaw51/yelp-fake-review-project/blob/main/Detection_and_Visualization_of_Fraudulent_Reviews_on_Yelp.pdf">report</a> is published to the root of the repository.
 							</p>
@@ -83,7 +79,7 @@
 							</p>
 						</div>
 
-						<div class="col-lg-6 col-md-6 col-xs-6 banner-left align-self-center" style="margin-bottom:1cm;">
+						<div class="col-lg-6 col-md-6 col-xs-6 banner-left align-self-center" style="margin-bottom:30px;">
 
 							<img src="img/yelp-flowchart.png" style="width:auto;height:auto;max-width:100%;">
 						</div>
@@ -101,25 +97,116 @@
 							</p>
 						</div>
 
-						<div class="col-lg-6 col-md-6 col-xs-6 banner-left align-self-center">
+						<div class="col-lg-6 col-md-6 col-xs-6 banner-left align-self-center" style = "margin-bottom: 30px;">
 
 							<img src="img/yelp-metrics.png" style="width:auto;height:auto;max-width:100%;">
 						</div>
 
 						<div>
-					    <!-- create dropdowns -->
-					    <select id="metroDropdown"></select>
-					    <select id="categoryDropdown"></select>
-					    <select id="metricDropdown"></select>
 
-					    <!-- create divs -->
-					    <div id="chloropleth"></div>
-					    <div id="barchart"></div>
+							<p>
+								The visualization, written in D3.js, is shown below. It includes a chloropleth map, bar chart, and three dropdowns for altering the the map and barchart. The first dropdown changes the city, the second changes the business sector, and the third changes the metric for coloring the chloropleth map and bar chart. The metrics include:
 
-					    <!-- load javascript to populate dropdowns and divs -->
-					    <script type="module" src="yelp.js"></script>
-					</div>
+								<ul style="list-style: circle;     list-style-position: inside;">
+									<li><b>Fake Reviews (%)</b>: Percentage of fake reviews out of the total number of reviews.</li>
+									<li><b>Stars Absolute Difference (%)</b>: Absolute relative percent difference of star rating with fake reviews and without fake reviews.</li>
+									<li><b>Stars Change with Fake Reviews</b>: Change in star rating calculated as the rating excluding fake reviews subtracted from the rating including all reviews.</li>
+								</ul>
+
+								<p>
+									The chloropleth map is filtered by the city and business sector specified in the dropdowns. The light grey overlay in the middle of the map shows the boundaries for the chosen city. The map is divided by zipcode and colored by the metric chosen in the dropdown. 
+
+								</p>
+
+								<p>
+									Hover over the map to show a <b>tooltip</b> including the hovered zipcode, number of fake reviews and all three metrics for the hovered zipcode. It will also show a <b>bar chart</b> with the top five businesses that have the largest number of fake reviews for the hovered zipcode. Bars are colored by the chosen metric for each business. Clicking anywhere on the map locks the bar chart in place and colors the clicked zip code green. Clicking anywhere else on the page afterwards unlocks the chart.</li>
+								</ul>
+							</p>
+
+
+						</div>
+
+						<div style="margin-top: 30px;">
+							<!-- create dropdowns -->
+							<table>
+								<tr>
+									<td>
+										<select id="metroDropdown"></select>
+									</td>
+									<td>
+										<select id="categoryDropdown"></select>
+									</td>
+									<td>
+										<select id="metricDropdown"></select>
+									</td>
+								</tr>
+
+							</table>
+						</div>
+
+						<div style="display: flex, justify-content: center, margin-top: 1cm;">
+
+							<!-- create divs -->
+							<div id="chloropleth"  style = "margin-top: 20px;"></div>
+							<div id="barchart"></div>
+
+							<!-- load javascript to populate dropdowns and divs -->
+							<script type="module" src="yelp.js"></script>
+						</div>
 
 					</div>
 				</div>
 			</section>
+
+			<section class="services-area" id="contact" style="margin-top: 50px;">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content  col-lg-7">
+							<div class="title text-center">
+								<h1 class="mb-10">Get In Touch!</h1>
+							</div>
+						</div>
+					</div>
+
+					<div style="text-align: center;">
+						<a href="https://www.linkedin.com/in/jbecker7326" class="fa fa-linkedin fa-3x wow bounceIn"></a>
+						&ensp;
+						<a href="https://github.com/jbecker7326" class="fa fa-github fa-3x wow bounceIn"></a>
+						&ensp;
+						<a href="mailto:jbecker7326@gmail.com" class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></a>
+
+						<div class="col-lg-4 col-md-6">
+							<div class="single-services">
+
+							</div>
+						</div>
+
+						<p class="footer-text"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+						</div>
+					</div>
+				</section>
+
+				<!-- Custom Theme JavaScript -->
+				<script src="js/vendor/jquery-2.2.4.min.js"></script>
+				<script src="js/popper.min.js"></script>
+				<script src="js/vendor/bootstrap.min.js"></script>
+				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+				<script src="js/easing.min.js"></script>
+				<script src="js/hoverIntent.js"></script>
+				<script src="js/superfish.min.js"></script>
+				<script src="js/jquery.ajaxchimp.min.js"></script>
+				<script src="js/jquery.magnific-popup.min.js"></script>
+				<script src="js/jquery.tabs.min.js"></script>
+				<script src="js/jquery.nice-select.min.js"></script>
+				<script src="js/isotope.pkgd.min.js"></script>
+				<script src="js/waypoints.min.js"></script>
+				<script src="js/jquery.counterup.min.js"></script>
+				<script src="js/simple-skillbar.js"></script>
+				<script src="js/mail-script.js"></script>
+				<script src="js/scroll.js"></script>
+				<script src="js/main.js"></script>
+
+			</body>
+			</html>

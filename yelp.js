@@ -108,8 +108,11 @@ Promise.all([
 // jsons: object containing states and paths to geojson files
 // reviewData: data from businesses_reviews.csv
 function ready(jsons, reviewData) {
+    console.log(reviewData);
+
     // extract all unique metros from reviewData
     let metros = [...new Set(reviewData.map(x => x.metro))].sort();
+    console.log(metros);
     metros = metros.filter(item => item !== '');
 
     // append the metro options to the dropdown
