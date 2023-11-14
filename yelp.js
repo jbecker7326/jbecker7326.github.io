@@ -29,7 +29,7 @@ Object.keys(metricOptions).forEach(key => {
 
 // define the dimensions and margins for the map
 const margin = {top: 30, right: 30, bottom: 100, left: 0},
-    width = 800 - margin.left - margin.right,
+    width = 600 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;
 
 // create chloropleth map svg
@@ -41,9 +41,9 @@ const svgchloropleth = d3.select("#chloropleth")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 // dimensions for barchart
-const barDimensions = {marginTop: 30, marginRight: 150, marginBottom: 70, marginLeft: 150};
-barDimensions.width = 800 - barDimensions.marginLeft - barDimensions.marginRight;
-barDimensions.height = 450 - barDimensions.marginTop - barDimensions.marginBottom;
+const barDimensions = {marginTop: 150, marginRight: 150, marginBottom: 70, marginLeft: 150};
+barDimensions.width = 600 - barDimensions.marginLeft - barDimensions.marginRight;
+barDimensions.height = 550 - barDimensions.marginTop - barDimensions.marginBottom;
 
 // create barchart svg
 const svgbar = d3
@@ -52,7 +52,7 @@ const svgbar = d3
     .attr("id", "bar_chart")
     .attr("width", barDimensions.width + barDimensions.marginRight + barDimensions.marginRight)
     .attr("height", barDimensions.height + barDimensions.marginTop + barDimensions.marginBottom)
-    .attr("float", "right");
+    .attr("float", "center");
     
 // create tooltip
 const tooltip = d3.select("#chloropleth")
@@ -65,7 +65,7 @@ const tooltip = d3.select("#chloropleth")
     .style("border", "1px solid #333")
     .style("border-radius", "8px")
     .style("padding", "5px")
-    .style("box-sizing", "border-box");
+    .style("box-sizing", "border-box")
 
 // initialize svg groups
 const legendGroup = svgchloropleth.append("g").attr("id", "legend");
@@ -159,10 +159,11 @@ function createMapAndLegend(jsons, reviewData, selectedMetro, selectedCategory) 
     // title based on current selected metro
     map.append("text")
         .attr("id", "title")
-        .attr("x", width/6)
+        .attr("x", 0)
         .text("Fake Reviews for " + selectedMetro + " " + selectedCategory + " by Zipcode")
+        .style('fill', 'Black')
         .attr("font-weight", 700)
-        .attr("font-size", "22px");
+        .attr("font-size", "20px");
 
     // filter review data for selectedMetro
     let businesses = reviewData.filter(d => d.metro == selectedMetro);
@@ -189,7 +190,7 @@ function createMapAndLegend(jsons, reviewData, selectedMetro, selectedCategory) 
     };
 
     // add legend
-    Legend(colorScale, {legendGroup: legendGroup, y: height + 30, title: metricList.options[metricList.selectedIndex].text, marginLeft: 200, marginRight: -200});
+    Legend(colorScale, {legendGroup: legendGroup, y: height + 30, title: metricList.options[metricList.selectedIndex].text, marginLeft: 100, marginRight: -100});
     
     // function for getting color for map
     // colors grey if there are no businesses for a category within the zipcode
@@ -232,7 +233,7 @@ function createMapAndLegend(jsons, reviewData, selectedMetro, selectedCategory) 
         // initial projection and path for map
         var center = d3.geoCentroid(metroarea)
         var scale  = 400;
-        var offset = [width/2, height/2];
+        var offset = [width/1.5, height/2];
         var projection = d3.geoMercator().scale(scale).center(center).translate(offset);
         var path = d3.geoPath().projection(projection);
 
@@ -295,8 +296,7 @@ function createMapAndLegend(jsons, reviewData, selectedMetro, selectedCategory) 
                 }
             })
             // move tooltip with mouse
-            .on("mousemove", function (event) {return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");})
-            // remove barchart and tooltip on mouseout
+            .on("mousemove", function (event) {return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");})            // remove barchart and tooltip on mouseout
             .on("mouseout", function (event, d) {
                 if (clicked == false) { d3.select("#barcontainer").remove()};
                 return tooltip.style("visibility", "hidden");

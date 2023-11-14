@@ -62,7 +62,7 @@
 
 						<div class="col-lg-6 col-md-6 col-xs-6 banner-left">
 							<p>
-								I worked on the Yelp fake review project during the summer 2023 semester for Georgia Tech's CSE6242 (Data & Visual Analytics) class. The repository is available on <a href="https://github.com/csaw51/yelp-fake-review-project/tree/main">github</a> and the full <a href="https://github.com/csaw51/yelp-fake-review-project/blob/main/Detection_and_Visualization_of_Fraudulent_Reviews_on_Yelp.pdf">report</a> is published to the root of the repository.
+								I worked on the Yelp fake review project during the summer 2023 semester for Georgia Tech's CSE6242 (Data & Visual Analytics) class. The repository is available on <a href="https://github.com/csaw51/yelp-fake-review-project/tree/main">github</a> and the full <a href="https://github.com/csaw51/yelp-fake-review-project/blob/main/Detection_and_Visualization_of_Fraudulent_Reviews_on_Yelp.pdf">report</a> is published to the root of the repository. I've also recorded a video presentation that is available on <a href="https://www.youtube.com/watch?v=JdtZ_fPSZyc&feature=youtu.be">youtube</a>.
 							</p>
 							<p>
 								For this group project we trained 5 classifiers on the YelpZip dataset, a binary classification problem that determined whether a review was real or fake. We compared the results between Support Vector Machine (SVM), Naive Bayes (NB), K-Nearest Neighbor (KNN), Logistic Regression (LR) and Random Forest (RF).
@@ -78,8 +78,7 @@
 							</p>
 						</div>
 
-						<div class="col-lg-6 col-md-6 col-xs-6 banner-left align-self-center" style="margin-bottom:30px;">
-
+					<div class="col-lg-6 col-md-6 col-xs-6 banner-right align-self-center" style="margin-bottom:30px;">
 							<img src="img/yelp-flowchart.png" style="width:auto;height:auto;max-width:100%;">
 						</div>
 
@@ -96,32 +95,34 @@
 							</p>
 						</div>
 
-						<div class="col-lg-6 col-md-6 col-xs-6 banner-left align-self-center" style = "margin-bottom: 30px;">
+					<div class="col-lg-6 col-md-6 col-xs-6 banner-right align-self-center" style="margin-bottom:30px;">
 
 							<img src="img/yelp-metrics.png" style="width:auto;height:auto;max-width:100%;">
 						</div>
 
 						<div>
 
-							<p>
-								The visualization, written in D3.js, is shown below. It includes a chloropleth map, bar chart, and three dropdowns for altering the the map and barchart. The first dropdown changes the city, the second changes the business sector, and the third changes the metric for coloring the chloropleth map and bar chart. The metrics include:
+								<p>
+								The visualization, written in D3.js, is shown below. It includes a chloropleth map, bar chart, and three dropdown menus for altering the the map and barchart. The first dropdown changes the city, the second changes the business sector, and the third changes the metric for coloring the chloropleth map and bar chart. These metrics include:
 
 								<ul style="list-style: circle;     list-style-position: inside;">
 									<li><b>Fake Reviews (%)</b>: Percentage of fake reviews out of the total number of reviews.</li>
 									<li><b>Stars Absolute Difference (%)</b>: Absolute relative percent difference of star rating with fake reviews and without fake reviews.</li>
 									<li><b>Stars Change with Fake Reviews</b>: Change in star rating calculated as the rating excluding fake reviews subtracted from the rating including all reviews.</li>
 								</ul>
+							</p>
 
 								<p>
-									The chloropleth map is filtered by the city and business sector specified in the dropdowns. The light grey overlay in the middle of the map shows the boundaries for the chosen city. The map is divided by zipcode and colored by the metric chosen in the dropdown. 
+									The chloropleth map is filtered by the city. It shows urban as well as suburban areas. The light grey overlay in the middle of the map shows the boundaries for the chosen city, as well as the neighborhoods if applicable. The map is divided by zipcode and is colored based on the business sector and metric chosen in the last two dropdowns.
 								</p>
 
 								<p>
-									Hover over the map to show a <b>tooltip</b> including the hovered zipcode, number of fake reviews and all three metrics for the hovered zipcode. It will also show a <b>bar chart</b> with the top five businesses that have the largest number of fake reviews for the hovered zipcode. Bars are colored by the chosen metric for each business. Clicking anywhere on the map locks the bar chart in place and colors the clicked zip code green. Clicking anywhere else on the page afterwards unlocks the chart.</li>
-								</ul>
-							</p>
+									Hover over the map to show a <b>tooltip</b> including the zipcode, the number of fake reviews and all three metrics for the hovered zipcode. It will also show a <b>bar chart</b> with five businesses that have the largest number of fake reviews for the hovered zipcode. Bars are colored by the chosen metric for each business. Clicking anywhere on the map locks the bar chart in place and highlights the current zip code in green. Clicking anywhere else on the page afterward unlocks the chart.</li>
+								</p>
 
-
+								<p>
+									Please note that the following visualization is optimized for viewing on desktop devices only.
+								</p>
 						</div>
 
 						<div style="margin-top: 30px;">
@@ -142,14 +143,17 @@
 							</table>
 						</div>
 
-						<div style="display: flex, justify-content: center, margin-top: 1cm;">
+						<div style="display: flex; justify-content: center, margin-top: 1cm;" id="vis">
 
 							<!-- create divs -->
-							<div id="chloropleth"  style = "margin-top: 20px;"></div>
-							<div id="barchart"></div>
+							<div id="chloropleth"  style = "text-align: center; margin-top: 20px;"></div>
+
+
+							<div id="barchart" style = "text-align: center;"></div>
 
 							<!-- load javascript to populate dropdowns and divs -->
 							<script type="module" src="yelp.js"></script>
+						</div>
 						</div>
 
 					</div>
