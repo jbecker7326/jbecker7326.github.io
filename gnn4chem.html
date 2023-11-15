@@ -1,0 +1,225 @@
+	<!DOCTYPE html>
+	<html lang="zxx" class="no-js">
+	<head>
+		<!-- Mobile Specific Meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Favicon-->
+		<link rel="shortcut icon" href="img/icon.svg">
+		<!-- Author Meta -->
+		<meta name="author" content="Jennifer Becker">
+		<!-- Meta Description -->
+		<meta name="description" content="A portfolio website built by Jennifer Becker.">
+		<!-- Meta Keyword -->
+		<meta name="keywords" content="portfolio">
+		<!-- meta character set -->
+		<meta charset="UTF-8">
+		<!-- Site Title -->
+		<title>J. Becker</title>
+
+		<script src="https://d3js.org/d3.v7.min.js"></script>
+
+
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+			<!--
+			CSS
+			============================================= -->
+			<link rel="stylesheet" href="css/linearicons.css">
+			<link rel="stylesheet" href="css/font-awesome.min.css">
+			<link rel="stylesheet" href="css/bootstrap.css">
+			<link rel="stylesheet" href="css/magnific-popup.css">
+			<link rel="stylesheet" href="css/jquery-ui.css">
+			<link rel="stylesheet" href="css/nice-select.css">
+			<link rel="stylesheet" href="css/animate.min.css">
+			<link rel="stylesheet" href="css/main.css">
+		</head>
+
+		<body>
+			<header id="header">
+				<div class="container main-menu">
+					<div class="row align-items-center justify-content-between d-flex">
+						<div class id="logo">
+							<a href="/"><h3>J. Becker</h3></a>
+						</div>
+						<nav id="nav-menu-container">
+							<ul class="nav-menu">
+								<li><a href="index.html#about">About</a></li>
+								<li><a href="index.html#portfolio">Portfolio</a></li>
+								<li><a href="#contact">Contact</a></li>								
+								<li><a href="Jbecker_CV.pdf" class="genric-btn primary-border circle" target="_blank">Resume</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</header>
+
+			<section class="description-area section-gap" id="about">
+				<div class="container">
+					<div class="row fullscreen align-items-left justify-content-between">
+
+						<div class="col-lg-10 banner-left">
+							<h2 class="mt-10 mb-20" style="margin-bottom:30px; margin-top:30px">Node Classification on Protein-Protein Interactions for Applications in Biochemistry</h2>
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-xs-6 banner-left">
+							<p>
+								I worked on this project during the summer 2023 semester for Georgia Tech's CS7643 (Deep Learning) class. The repository is available on <a href="https://github.com/jbecker7326/GNN4CHEM/tree/master">github</a> and the full <a href="https://github.com/jbecker7326/GNN4CHEM/blob/master/NodeClassificationonProtein-ProteinInteraction.pdf">report</a> is published to the root of the repository.
+							</p>
+
+							<p>
+								<h5 class="text-uppercase">Introduction</h5>
+							</p>
+							<p>
+								The purpose of this project was to explore and advance Graph Neural Network (GNN) architectures to make multi-label predictions on the nodes of Protein-Protein Interactions (PPIs). By testing existing GNN layer types in different architectures and comparing against benchmarks, our study found that a combination of Molecular Fingerprint Convolution (MFConv) and Graph Isomorphism Network (GIN) layers produced our best F-1 scores across validation and test data. This impressive result is analyzed from the theoretical perspective on both architectures in terms of discriminating power.
+							</p>
+							<p>
+								For this project, we used the PPI dataset, which contains undirected graphs corresponding to different human tissues. Nodes each represent a protein while edges represent interactions between proteins. The dataset includes 295 total disconnected graphs, of which 24 consist of more than 2 nodes. This dataset has been used in several studies to benchmark the performance of GNNs. Table 1 summarizes the benchmark F-1 scores of the relevant architectures used in this project.
+							</p>
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-xs-6 banner-right align-self-center" style="margin-bottom:30px;">
+							<p>
+								<img src="img/gnn4chem/ppi_example.png" style="width:auto;height:auto;max-width:100%;">
+							</p>
+							<p>
+								Three-dimensional edge-colored representation of the multiplex Human HIV-1 protein-protein interaction network. [Source: <a href="https://commons.wikimedia.org/wiki/File:Multiplex_Human_HIV-1_protein-protein_interaction_network_%28edge-colored_visualization%29.png">Wikimedia Commons</a>]
+							</p>
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-xs-6 banner-left">
+
+
+							<p>
+
+								<h5 class="text-uppercase">Experimentation</h5>
+
+							</p>
+							<p>
+								We trained and tested multiple GNN architectures that had existing benchmarks for the PPI dataset. Namely, Cluster Graph Convolutional Network (CGCN), GraphSAGE and Graph Attention Network (GAT) layers. Additionally, we tested Graph Isomorphism Network (GIN) and Molecular Fingerprint (MFConv) layers, which were chosen due to their superior performance on related datasets, although they do not have existing benchmarks for the PPI data.
+							</p>
+							<p>
+								In our very first attempt, we added multiple Graph layers at the head of every model and saw sub-optimal results. We initially encountered an ”over-smoothing” problem, which is a common issue in Graph Networks. In practice, when GNNs grow too deep, every node’s feature representation aggregates to learn the same effective feature space over time. This is in contrast to convolutional layers in image classification, where deeper nets can capture larger receptive fields and learn from relationships between different blocks of the image.
+							</p>
+							<p>
+								To combat this, we added several linear layers after the Graph layers, leading to immediate improvement. The Graph layers were able to extract nodes’ information from itself and its neighbors, while the fully-connected linear layers with activation functions allowed for better learning for the prediction task. Our findings, as well as architecturespecific tuning steps, issues and solutions, are discussed in more detail in the following sections.					
+							</p>
+
+
+							<p>
+								In an attempt to improve our highest performing models, we decided to combine subsets of different convolution layers. Our hypothesis was that by using approaches designed by studies from varying domains, the network would be able to learn a richer feature space. Finally, we replaced the second and third layers of our MF architecture with GIN in hopes of helping the model to discriminate between nodes based on features learned in the first MF layer. 
+							</p>
+
+
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-xs-6 banner-right align-self-center" style="margin-bottom:30px;">
+							<p>
+
+								<img src="img/gnn4chem/gnn4chem.png" style="width:auto;height:auto;max-width:100%;">
+							</p>
+							<p>
+								Final architecture with Molecular Fingerprint Convolution and GIN layers.
+							</p>
+						</div>
+
+
+						<div class="col-lg-6 col-md-6 col-xs-6 banner-left">
+
+
+							<p>
+
+								<h5 class="text-uppercase">Conclusion</h5>
+
+							</p>
+
+							<p>
+
+								MF + GIN was our best performing model with an F1 score higher than both MF and GIN individually, while still halving time and space as compared to MF. The improved time and space complexity was to be expected, since our original GIN architecture was one of the fastest and most lightweight in our study. From the improved performance, we see that this combined architecture effectively allows the model to first learn a rich feature space, then use discrimination between nodes within local neighborhoods to generalize well to the training data.
+							</p>
+
+
+							<p>
+								From the table, we can see that MF + GIN had the lowest F1 with MF as a close second, but GIN had the lowest loss and AUROC. We suspect that this is due to the GIN architectures’ ability to better distinguish between multiple labels for classification, while MF was better for modeling the molecular graph structure. MF had a very high runtime, while MF + GIN ran in roughly half the time and GIN was a little faster. Lastly, MF + GIN was taking up almost double the amount of space on GPU as compared to GIN.
+							</p>
+
+							<p>
+								These findings were both likely due to the smaller number of parameters in this GIN layers. In conclusion, while MF had great performance for classifying molecular graphs, we see a time and space complexity vs. performance tradeoff where GIN is generally more efficient. By combining the two, we were able to build a model with the best features of both architectures, having high performance while still maintaining low runtime and memory.
+							</p>
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-xs-6 banner-right align-self-center" style="margin-bottom:30px;">
+							<p>
+								<img src="img/gnn4chem/comparison_table.png" style="width:auto;height:auto;max-width:100%;">
+							</p>
+							<p>
+								Statistics for final model architectures averaged over five runs. Hyperparameters set to 8000 epochs and a learning
+								rate of 1e-3. Lowest performance is highlighted in red, highest performance in yellow.
+							</p>
+
+							<p>
+								<img src="img/gnn4chem/validation.jpg" style="width:auto;height:auto;max-width:100%;">
+
+							</p>
+							<p>	
+								Training and validation loss for final model architectures at every 100 epochs. Averaged over five runs.
+							</p>
+
+						</div>
+
+
+					</div>
+				</section>
+
+				<section class="services-area" id="contact" style="margin-top: 50px;">
+					<div class="container">
+						<div class="row d-flex justify-content-center">
+							<div class="menu-content  col-lg-7">
+								<div class="title text-center">
+									<h1 class="mb-10">Get In Touch!</h1>
+								</div>
+							</div>
+						</div>
+
+						<div style="text-align: center;">
+							<a href="https://www.linkedin.com/in/jbecker7326" class="fa fa-linkedin fa-3x wow bounceIn"></a>
+							&ensp;
+							<a href="https://github.com/jbecker7326" class="fa fa-github fa-3x wow bounceIn"></a>
+							&ensp;
+							<a href="mailto:jbecker7326@gmail.com" class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></a>
+
+							<div class="col-lg-4 col-md-6">
+								<div class="single-services">
+
+								</div>
+							</div>
+
+							<p class="footer-text"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+							</div>
+						</div>
+					</section>
+
+					<!-- Custom Theme JavaScript -->
+					<script src="js/vendor/jquery-2.2.4.min.js"></script>
+					<script src="js/popper.min.js"></script>
+					<script src="js/vendor/bootstrap.min.js"></script>
+					<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+					<script src="js/easing.min.js"></script>
+					<script src="js/hoverIntent.js"></script>
+					<script src="js/superfish.min.js"></script>
+					<script src="js/jquery.ajaxchimp.min.js"></script>
+					<script src="js/jquery.magnific-popup.min.js"></script>
+					<script src="js/jquery.tabs.min.js"></script>
+					<script src="js/jquery.nice-select.min.js"></script>
+					<script src="js/isotope.pkgd.min.js"></script>
+					<script src="js/waypoints.min.js"></script>
+					<script src="js/jquery.counterup.min.js"></script>
+					<script src="js/simple-skillbar.js"></script>
+					<script src="js/owl.carousel.min.js"></script>
+					<script src="js/mail-script.js"></script>
+					<script src="js/scroll.js"></script>
+					<script src="js/main.js"></script>
+					<script src="js/owl.carousel.min.js"></script>
+
+				</body>
+				</html>
