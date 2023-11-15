@@ -100,11 +100,10 @@
 							</p>
 
 							<p>
-
-								Decision tree model complexity for bioresponse data increases with depth and number of splits. Validation precision increased until max depth 7 (a), and minimum samples per leaf of 39 (d). We saw a similar trend when varying the number of minimum samples per split (b), but after tuning our model's depth and samples per leaf, the minimum samples per split does not effect precision (e). This implies that the model will no longer change with additional forms of pruning.
+								Decision tree model complexity for bioresponse data increased with depth and number of splits. Validation precision increased until a max depth of 7 (a), and minimum samples per leaf of 39 (d). We can see a similar trend when varying the number of minimum samples per split (b), but after tuning our model's depth and samples per leaf, the minimum samples per split does not effect precision (e). This implies that the model is already effectively pruned and will no longer change with additional forms of pruning.
 							</p>
 							<p>
-								The small margin between the learning curves after applying the same hyperparameter tuning (e) represents the reduction in variance, or overfitting, from the original learning curves (c), with increased performance which indicates that the model did not experience underfitting or increased bias as a trade-off. We also see a slight upwards trend in the validation line, indicating that variance may reduce further as we add additional samples.
+								The small margin between the learning curves after applying the same hyperparameter tuning (e) represents the reduction in variance, or overfitting, from the original learning curves (c), with increased performance which indicates that the model did not experience underfitting or increased bias as a trade-off. We can also see a slight upwards trend in the validation line, indicating that variance may reduce further as we add additional samples.
 							</p>
 						</div>
 
@@ -118,9 +117,8 @@
 						</div>
 						<div class="col-lg-6 col-md-6 col-xs-6 banner-left">
 
-
 							<p>
-								With the letter data, lass distinction decreased after depth 12 due to overfitting (d), while correlation increased with depth until showing asymptotic behavior around depth 17 (a). We tuned our final model to the average of the two, 15, to leverage both. We left no limit on the minimum samples per leaf, as we observed that class distinction is only slightly improved as leaf minimum increases, but this comes at a significant cost to correlation (b and e).
+								With the letter data, class distinction decreased after depth 12 due to overfitting (d), while correlation increased with depth until showing asymptotic behavior around depth 17 (a). I tuned the final model to the average of the two, 15, to leverage both. I imposed no limit on the minimum samples per leaf, after observing that class distinction is only slightly improved while leaf minimum increases. But, this comes at a significant cost to correlation (b and e).
 							</p>
 							<p>
 								The tuned learning curve (c and f) have a relatively large margin (0.1) for correlation at the maximum number of samples showing that the model is overfit, but they trend towards convergence so we may see improved performance and a reduction in variance with more samples. This model shows extreme overfitting in class distinction, likely due to the multi-class label.
@@ -140,13 +138,11 @@
 								<h5 class="text-uppercase">K-Nearest Neighbors</h5>
 
 							</p>
-
-
 							<p>
-								For the bioresponse data, we saw minimal changes in performance between distance metrics (a) but chose to tune our final model to city block distance, which corresponds to Manhattan distance, which had slightly higher precision. The number of neighbors plot (b) shows us that the precision is greater on the even numbers of neighbors, which is atypical of this model where an even number of numbers for comparison often leads to a tie in samples at the decision boundary.
+								For the bioresponse data, I noted minimal changes in performance between distance metrics (a) but chose to tune the final model to city block distance, which corresponds to Manhattan distance, which had slightly higher precision. The number of neighbors plot (b) shows us that the precision is greater with an even numbers of neighbors, which is atypical of this model where an even number of neighbors for comparison often leads to a tie in samples at the decision boundary.
 							</p>
 							<p>
-								We observed a decrease in overfitting from 4 (c) to 6 (d) neighbors as the margin between the training and validation set grew smaller with a minimal decrease in performance. We also observed an uptick in the rate of increase of validation precision between 90 and 100 samples, which when combined with the asymptotic behavior of the training precision indicates that the performance and fit of the model may continue to improve with more samples.
+								We can see a decrease in overfitting from 4 (c) to 6 (d) neighbors as the margin between the training and validation set grew smaller with a minimal decrease in performance. We can also observe an uptick in the rate of increase of validation precision between 90 and 100 samples, which when combined with the asymptotic behavior of the training precision indicates that the performance and fit of the model may continue to improve with more samples.
 							</p>
 						</div>
 
@@ -161,9 +157,10 @@
 						<div class="col-lg-6 col-md-6 col-xs-6 banner-left">
 
 							<p>
-								For the letter data, we observed that the minkowski metric, or euclidean distance, lead to a model with higher correlation and class distinction (a and e). This may be a result of the multi-classification problem with a greater number of decision boundaries, as compared to the binary classification for the bioresponse data, where the city block distance resulted in the least amount of error. We see an increase in class distinction and a decrease in precision as the number of neighbors increases (b and f).
-								<p>
-								We limited the model to 15 neighbors (d and h) as compared to 5 neighbors (c and g). We can see that this results in a bias-variance trade-off for correlation where the margin is smaller, meaning we have reduced variance, at the cost of increased bias where our model correlation performance slightly decreases. However, for the class distinction we had a smaller margin with a performance increase, meaning that we have reduced variance with no bias trade-off. This is ideal for our problem as we are looking to tune the model to both performance metrics.						</p>
+								For the letter data, we can see that the minkowski metric, or euclidean distance, lead to a model with higher correlation and class distinction (a and e). This may be a result of the multi-classification problem with a greater number of decision boundaries, as compared to the binary classification for the bioresponse data, where the city block distance resulted in the least amount of error. We can observe an increase in class distinction and a decrease in precision as the number of neighbors increases (b and f).
+							</p>
+							<p>
+								I limited the model to 15 neighbors (d and h) as compared to 5 neighbors (c and g). We can see that this results in a bias-variance trade-off for correlation where the margin is smaller, meaning we have reduced variance, at the cost of increased bias where our model correlation performance slightly decreases. However, for the class distinction we had a smaller margin with a performance increase, meaning that we have reduced variance with no bias trade-off. This is ideal for our problem as we are looking to tune the model to both performance metrics.						
 							</p>
 						</div>
 
@@ -182,144 +179,145 @@
 
 							</p>
 							<p>
-								We were unable to analyze class distinction for this model as it is not supported by the sklearn package. The bioresponse and letter data showed similar responses for kernel type (a and e), with highest performance using a polynomial kernel. This is expected because they are not linearly separable due to the previously described complexity of each data set, but the increased performance comes at the cost of overfitting, which we can see from the gap between the training and validation curves. We attempted the radial basis function kernel to reduce variance, but opted for the polynomial kernel in our final models due to time considerations where the radial basis function ran roughly three times as long.
+								The bioresponse and letter data showed similar responses when changing kernel type (a and e), with highest performance using a polynomial kernel. This is expected because they are not linearly separable due to the previously described complexity of each data set, but the increased performance comes at the cost of overfitting, which we can see from the gap between the training and validation curves. I attempted the radial basis function kernel to reduce variance, but opted for the polynomial kernel in the final models due to time considerations where the radial basis function ran roughly three times as long.
+							</p>
 
-								<p>
-									The degree controls the flexibility of the decision boundary and increases with performance for both problems. Our bioresponse data has a more complex boundary line which causes the model to overfit the data more with the increase of this parameter (d), as compared to the letter data (h) which doesn't show significant overfitting until after a degree of 3. Similarly, we see increased performance with increased variance while increasing the parameter C, which controls the size of the desired margin (b and f). As the margin decreases, the model is left with more room to overfit the data set.
+							<p>
+								The degree controls the flexibility of the decision boundary and increases with performance for both problems. The bioresponse data has a more complex boundary line which causes the model to overfit the data more with the increase of this parameter (d), as compared to the letter data (h) which doesn't show significant overfitting until after a degree of 3. Similarly, we see increased performance with increased variance while increasing the parameter C, which controls the size of the desired margin (b and f). As the margin decreases, the model is left with more room to overfit the data set.
 
-								</p>
-							</div>
-							<div class="col-lg-6 col-md-6 col-xs-6 banner-right align-self-center" style="margin-bottom:30px;">
-								<img src="img/compare_sklearn/svm_validation.png" style="width:auto;height:auto;max-width:100%;">
-								<p>
-									Support vector machine validation curves while varying kernel type, kernel coefficient 0, C and degree for bioresponse data at (a, b, c, d) and letter data (e, f, g, h).
-								</p>
-							</div>
+							</p>
+						</div>
+						<div class="col-lg-6 col-md-6 col-xs-6 banner-right align-self-center" style="margin-bottom:30px;">
+							<img src="img/compare_sklearn/svm_validation.png" style="width:auto;height:auto;max-width:100%;">
+							<p>
+								Support vector machine validation curves while varying kernel type, kernel coefficient 0, C and degree for bioresponse data at (a, b, c, d) and letter data (e, f, g, h).
+							</p>
+						</div>
 
-							<div class="col-lg-6 col-md-6 col-xs-6 banner-left">
+						<div class="col-lg-6 col-md-6 col-xs-6 banner-left">
 
-								<p>
-									We took a closer look at the validation curve responses by generating learning curves while varying C for the bioresponse data from 4 (a) to 0.5 (b) and degree for the letter data from 4 (c) to 2 (d). For the bioresponse data we observed a decrease in the precision of the training curve which more closely tracks the shape of the validation curve, verifying that there is a reduction in variance. The training curve however trends downward, limiting the possibility of an increase in precision with additional data. We see a reduction in variance for the letter data as well, but at the cost of increased bias. The upwards trend of both curves imply that the model may improve with further tuning and additional samples.
-								</p>
-							</div>
-							<div class="col-lg-6 col-md-6 col-xs-6 banner-right align-self-center" style="margin-bottom:30px;">
-								<img src="img/compare_sklearn/svm_learning.png" style="width:auto;height:auto;max-width:100%;">
-								<p>
-									Support vector machine learning curves for bioresponse data at C 4 (a) and 0.5 (b) and letter data at degree 4 (c) and 2 (d).
-								</p>
-							</div>
-
-
-							<div class="col-lg-6 col-md-6 col-xs-6 banner-left">
-
-								<p>
-									<h5 class="text-uppercase">Neural Networks</h5>
-								</p>
-								<p>
-									The data sets were not large enough to elicit any changes in performance with multiple layers, so we looked at variations in the width of a single hidden layer. The bioresponse data precision increased marginally with layer width at the cost of increasing complexity, due to the relatively small length of the dataset, and therefore to limit model overfitting we tuned our final model to a width of 80. We see an expected significant increase in performance with respect to width for the letter data, which contains roughly 6 times the amount of records. The model performance increases further as additional width is added to the layer, at the cost of significant time increases due to the backpropogation of the model. To reduce time complexity, we limited the layer to a width of 100 units.
+							<p>
+								I took a closer look at the validation curve responses by generating learning curves while varying C for the bioresponse data from 4 (a) to 0.5 (b) and degree for the letter data from 4 (c) to 2 (d). For the bioresponse data I observed a decrease in the precision of the training curve which more closely tracks the shape of the validation curve, verifying that there is a reduction in variance. The training curve however trends downward, limiting the possibility of an increase in precision with additional data. We can see a reduction in variance for the letter data as well, but at the cost of increased bias. The upwards trend of both curves imply that the model may improve with further tuning and additional samples.
+							</p>
+						</div>
+						<div class="col-lg-6 col-md-6 col-xs-6 banner-right align-self-center" style="margin-bottom:30px;">
+							<img src="img/compare_sklearn/svm_learning.png" style="width:auto;height:auto;max-width:100%;">
+							<p>
+								Support vector machine learning curves for bioresponse data at C 4 (a) and 0.5 (b) and letter data at degree 4 (c) and 2 (d).
+							</p>
+						</div>
 
 
-									<p>
-										We can see that the highest performing activation function for our bioresponse data is ReLU, a function known to minimize the vanishing gradient effect which may be an indication that this is more prevalent in data sets with a large number of features, as compared to the letter data which performed best with a Tanh function. The best performing solver for both data sets was adam, a modernized form of stochastic gradient descent, which came at a large increase in variance for the bioresponse data. Because of this, we chose to use stochastic gradient descent or 'sgd' for our final model.
+						<div class="col-lg-6 col-md-6 col-xs-6 banner-left">
+
+							<p>
+								<h5 class="text-uppercase">Neural Networks</h5>
+							</p>
+							<p>
+								The data sets were not large enough to elicit any changes in performance with multiple layers, so we looked at variations in the width of a single hidden layer. The bioresponse data precision increased marginally with layer width at the cost of increasing complexity, due to the relatively small length of the dataset, and therefore to limit model overfitting I tuned the final model to a width of 80. We see an expected significant increase in performance with respect to width for the letter data, which contains roughly 6 times the amount of records. The model performance increases further as additional width is added to the layer, at the cost of significant time increases due to the backpropogation of the model. To reduce time complexity, I limited the layer to a width of 100 units.
+							</p>
 
 
-									</p>
-								</div>
-								<div class="col-lg-6 col-md-6 col-xs-6 banner-right align-self-center" style="margin-bottom:30px;">
-									<img src="img/compare_sklearn/nn_validation.png" style="width:auto;height:auto;max-width:100%;">
-									<p>
-										Neural network validation curves for bioresponse and letter data while varying the first hidden layer width (a, e), activation function (b, f), solver (c, g). Learning curves for bioresponse (d) and letter data (h) after tuning.
-									</p>
-								</div>
+							<p>
+								We can see that the highest performing activation function for our bioresponse data is ReLU, a function known to minimize the vanishing gradient effect which may be an indication that this is more prevalent in data sets with a large number of features, as compared to the letter data which performed best with a Tanh function. The best performing solver for both data sets was adam, a modernized form of stochastic gradient descent, which came at a large increase in variance for the bioresponse data. Because of this, I chose to use stochastic gradient descent or 'sgd' for our final model.
+							</p>
+						</div>
+						<div class="col-lg-6 col-md-6 col-xs-6 banner-right align-self-center" style="margin-bottom:30px;">
+							<img src="img/compare_sklearn/nn_validation.png" style="width:auto;height:auto;max-width:100%;">
+							<p>
+								Neural network validation curves for bioresponse and letter data while varying the first hidden layer width (a, e), activation function (b, f), solver (c, g). Learning curves for bioresponse (d) and letter data (h) after tuning.
+							</p>
+						</div>
 
-								<div class="col-lg-6 col-md-6 col-xs-6 banner-left">
+						<div class="col-lg-6 col-md-6 col-xs-6 banner-left">
 
-									<p>
-										The loss curves for our neural networks show that both models are optimally tuned, as we can see minimal oscillation on either curve.
-									</p>
-								</div>
-								<div class="col-lg-6 col-md-6 col-xs-6 banner-right align-self-center" style="margin-bottom:30px;">
-									<img src="img/compare_sklearn/nn_loss.png" style="width:auto;height:auto;max-width:100%;">
-									<p>
-										Loss curves for bioresponse data (left) and letter data (right).
+							<p>
+								The loss curves for our neural networks both decrease over time, showing us that the models are effectively learning. The loss for each continues to decrease with additional iterations and shows a downtick at the end of each plot, telling us that the model is currently underfit and that additional iterations may increase performance. 
+							</p>
+							<p>
+								Next we might consider the learning rate. If the learning rate were too high, the curves would oscillate which would imply that the stochastic gradient solver is taking large steps in the direction of the gradient and overshooting the local minima. We can see that the the loss curves are both smooth, which tells us that the learning rates are optimally tuned.
+							</p>
+						</div>
+						<div class="col-lg-6 col-md-6 col-xs-6 banner-right align-self-center" style="margin-bottom:30px;">
+							<img src="img/compare_sklearn/nn_loss.png" style="width:auto;height:auto;max-width:100%;">
+							<p>
+								Training loss curves for bioresponse data (left) and letter data (right).
 
-									</p>
+							</p>
 
-								</div>
+						</div>
 
-								<div class="col-lg-6 col-md-6 col-xs-6 banner-left">
-									<h5 class="text-uppercase">Conclusion</h5>
+						<div class="col-lg-6 col-md-6 col-xs-6 banner-left">
+							<h5 class="text-uppercase">Conclusion</h5>
 
-									<p>
-										The final performance for each model is shown in table 1 where we see siginifi-cant changes in final testing data scores and wall-clock times between datasets. We observe that for the bioresponse data set, support vector machines and neural networks took the longest, with a slightly higher score for neural networks. For the highest performance, we would likely use neural networks for a similarly structured wide data set with many features. For the bioresponse data, K-nearest neighbor was the fastest while comparatively took the longest to fit the letter data, from which we can derive that that the length of data set was not ideal for this model. Comparatively, decision trees were faster by a significant margin.
-									</p>
+							<p>
+								The final performance for each model is shown in the table where we see siginificant changes in final testing data scores and wall-clock times between datasets. We see that for the bioresponse data set, support vector machines and neural networks took the longest, with a slightly higher score for neural networks. For the highest performance, we would likely use neural networks for a similarly structured wide data set with many features. For the bioresponse data, K-nearest neighbor was the fastest while comparatively took the longest to fit the letter data, from which we can derive that that the length of data set was not ideal for this model. Comparatively, decision trees were faster by a significant margin.
+							</p>
 
-								</div>
+						</div>
 
-								<div class="col-lg-6 col-md-6 col-xs-6 banner-right align-self-center" style="margin-bottom:30px;">
-									<img src="img/compare_sklearn/conclusion.png" style="width:auto;height:auto;max-width:100%;">
-									<p>
-										Final model performance using wall-clock time and sklearn performance score metrics.
-									</p>
-
-
-
-								</div>
-							</div>
+						<div class="col-lg-6 col-md-6 col-xs-6 banner-right align-self-center" style="margin-bottom:30px;">
+							<img src="img/compare_sklearn/conclusion.png" style="width:auto;height:auto;max-width:100%;">
+							<p>
+								Final model performance using wall-clock time and sklearn performance score metrics.
+							</p>
+						</div>
+					</div>
+				</div>
 			</section>
 
 
-							<section class="services-area" id="contact" style="margin-top: 50px;">
-								<div class="container">
-									<div class="row d-flex justify-content-center">
-										<div class="menu-content  col-lg-7">
-											<div class="title text-center">
-												<h1 class="mb-10">Get In Touch!</h1>
-											</div>
-										</div>
-									</div>
+			<section class="services-area" id="contact" style="margin-top: 50px;">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content  col-lg-7">
+							<div class="title text-center">
+								<h1 class="mb-10">Get In Touch!</h1>
+							</div>
+						</div>
+					</div>
 
-									<div style="text-align: center;">
-										<a href="https://www.linkedin.com/in/jbecker7326" class="fa fa-linkedin fa-3x wow bounceIn"></a>
-										&ensp;
-										<a href="https://github.com/jbecker7326" class="fa fa-github fa-3x wow bounceIn"></a>
-										&ensp;
-										<a href="mailto:jbecker7326@gmail.com" class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></a>
+					<div style="text-align: center;">
+						<a href="https://www.linkedin.com/in/jbecker7326" class="fa fa-linkedin fa-3x wow bounceIn"></a>
+						&ensp;
+						<a href="https://github.com/jbecker7326" class="fa fa-github fa-3x wow bounceIn"></a>
+						&ensp;
+						<a href="mailto:jbecker7326@gmail.com" class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></a>
 
-										<div class="col-lg-4 col-md-6">
-											<div class="single-services">
+						<div class="col-lg-4 col-md-6">
+							<div class="single-services">
 
-											</div>
-										</div>
+							</div>
+						</div>
 
-										<p class="footer-text"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-											Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-											<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-										</div>
-									</div>
-								</section>
+						<p class="footer-text"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+						</div>
+					</div>
+				</section>
 
-								<!-- Custom Theme JavaScript -->
-								<script src="js/vendor/jquery-2.2.4.min.js"></script>
-								<script src="js/popper.min.js"></script>
-								<script src="js/vendor/bootstrap.min.js"></script>
-								<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-								<script src="js/easing.min.js"></script>
-								<script src="js/hoverIntent.js"></script>
-								<script src="js/superfish.min.js"></script>
-								<script src="js/jquery.ajaxchimp.min.js"></script>
-								<script src="js/jquery.magnific-popup.min.js"></script>
-								<script src="js/jquery.tabs.min.js"></script>
-								<script src="js/jquery.nice-select.min.js"></script>
-								<script src="js/isotope.pkgd.min.js"></script>
-								<script src="js/waypoints.min.js"></script>
-								<script src="js/jquery.counterup.min.js"></script>
-								<script src="js/simple-skillbar.js"></script>
-								<script src="js/owl.carousel.min.js"></script>
-								<script src="js/mail-script.js"></script>
-								<script src="js/scroll.js"></script>
-								<script src="js/main.js"></script>
-								<script src="js/owl.carousel.min.js"></script>
+				<!-- Custom Theme JavaScript -->
+				<script src="js/vendor/jquery-2.2.4.min.js"></script>
+				<script src="js/popper.min.js"></script>
+				<script src="js/vendor/bootstrap.min.js"></script>
+				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+				<script src="js/easing.min.js"></script>
+				<script src="js/hoverIntent.js"></script>
+				<script src="js/superfish.min.js"></script>
+				<script src="js/jquery.ajaxchimp.min.js"></script>
+				<script src="js/jquery.magnific-popup.min.js"></script>
+				<script src="js/jquery.tabs.min.js"></script>
+				<script src="js/jquery.nice-select.min.js"></script>
+				<script src="js/isotope.pkgd.min.js"></script>
+				<script src="js/waypoints.min.js"></script>
+				<script src="js/jquery.counterup.min.js"></script>
+				<script src="js/simple-skillbar.js"></script>
+				<script src="js/owl.carousel.min.js"></script>
+				<script src="js/mail-script.js"></script>
+				<script src="js/scroll.js"></script>
+				<script src="js/main.js"></script>
+				<script src="js/owl.carousel.min.js"></script>
 
-							</body>
-							</html>
+			</body>
+			</html>
