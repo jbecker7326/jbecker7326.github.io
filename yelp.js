@@ -28,7 +28,7 @@ Object.keys(metricOptions).forEach(key => {
 });
 
 // define the dimensions and margins for the map
-const margin = {top: 30, right: 30, bottom: 100, left: 0},
+const margin = {top: 30, right: 30, bottom: 150, left: 0},
     width = 600 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;
 
@@ -159,7 +159,7 @@ function createMapAndLegend(jsons, reviewData, selectedMetro, selectedCategory) 
     // title based on current selected metro
     map.append("text")
         .attr("id", "title")
-        .attr("x", 0)
+        .attr("x", 30)
         .text("Fake Reviews for " + selectedMetro + " " + selectedCategory + " by Zipcode")
         .style('fill', 'Black')
         .attr("font-weight", 700)
@@ -190,7 +190,7 @@ function createMapAndLegend(jsons, reviewData, selectedMetro, selectedCategory) 
     };
 
     // add legend
-    Legend(colorScale, {legendGroup: legendGroup, y: height + 30, title: metricList.options[metricList.selectedIndex].text, marginLeft: 100, marginRight: -100});
+    Legend(colorScale, {legendGroup: legendGroup, y: height + 80, title: metricList.options[metricList.selectedIndex].text, marginLeft: 100, marginRight: -100});
     
     // function for getting color for map
     // colors grey if there are no businesses for a category within the zipcode
@@ -232,8 +232,8 @@ function createMapAndLegend(jsons, reviewData, selectedMetro, selectedCategory) 
         console.log('drawing...')
         // initial projection and path for map
         var center = d3.geoCentroid(metroarea)
-        var scale  = 400;
-        var offset = [width/1.5, height/2];
+        var scale  = 350;
+        var offset = [width/2, height/2.25];
         var projection = d3.geoMercator().scale(scale).center(center).translate(offset);
         var path = d3.geoPath().projection(projection);
 
@@ -245,6 +245,7 @@ function createMapAndLegend(jsons, reviewData, selectedMetro, selectedCategory) 
         var scale   = (hscale < vscale) ? hscale : vscale;
         var offset  = [width - (bounds[0][0] + bounds[1][0])/2,
                             height - (bounds[0][1] + bounds[1][1])/2];
+
         // new projection
         projection = d3.geoMercator().center(center).scale(scale).translate(offset);
         path = path.projection(projection);
